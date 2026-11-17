@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.hypothesis/
+.mypy_cache/
+.ruff_cache/
+
+# Couverture et rapports générés par la CI
+.coverage
+.coverage.*
+htmlcov/
+reports/
+
+# Bases de données locales et secrets
+*.db
+*.sqlite3
+.env
+.env.*
+
+# Éditeurs / OS
+.idea/
+.vscode/
+.DS_Store
