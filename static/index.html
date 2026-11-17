@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BankSim — démo pédagogique</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <h1>BankSim <small>banque fictive · projet académique</small></h1>
+    <div><span id="who"></span> <button id="logout" hidden>Déconnexion</button></div>
+  </header>
+
+  <div id="msg" role="status" aria-live="polite" hidden></div>
+
+  <main>
+    <section id="auth">
+      <form id="login-form" class="card">
+        <h2>Connexion</h2>
+        <label>E-mail <input name="email" type="email" required autocomplete="username"></label>
+        <label>Mot de passe <input name="password" type="password" required autocomplete="current-password"></label>
+        <button type="submit">Se connecter</button>
+      </form>
+      <form id="register-form" class="card">
+        <h2>Créer un compte client</h2>
+        <label>Nom complet <input name="full_name" required maxlength="100"></label>
+        <label>E-mail <input name="email" type="email" required></label>
+        <label>Mot de passe <input name="password" type="password" required minlength="8" maxlength="64" autocomplete="new-password"></label>
+        <small>8 à 64 caractères, avec minuscule, majuscule et chiffre.</small>
+        <button type="submit">S'inscrire</button>
+      </form>
+    </section>
+
+    <section id="app" hidden>
+      <div class="card">
+        <h2>Mes comptes</h2>
+        <div class="row">
+          <select id="new-type"><option value="CHECKING">Compte courant</option><option value="SAVINGS">Compte épargne</option></select>
+          <button id="open-account">Ouvrir un compte</button>
+        </div>
+        <table id="accounts"><thead><tr><th>IBAN</th><th>Type</th><th>Statut</th><th class="num">Solde (TND)</th></tr></thead><tbody></tbody></table>
+      </div>
+
+      <div class="card" id="detail" hidden>
+        <h2 id="detail-title"></h2>
+        <div class="grid">
+          <form id="deposit-form"><h3>Dépôt</h3>
+            <input name="amount" inputmode="decimal" placeholder="100.000" required>
+            <button type="submit">Déposer</button></form>
+          <form id="withdraw-form"><h3>Retrait</h3>
+            <input name="amount" inputmode="decimal" placeholder="50.000" required>
+            <button type="submit">Retirer</button></form>
+          <form id="transfer-form"><h3>Virement</h3>
+            <input name="to_iban" placeholder="IBAN destinataire (TN…)" required>
+            <input name="amount" inputmode="decimal" placeholder="Montant" required>
+            <input name="reference" placeholder="Référence (facultatif)" maxlength="140">
+            <button type="submit">Virer</button></form>
+        </div>
+        <div class="row"><button id="close-account" class="danger">Clôturer ce compte</button>
+          <button id="projection" hidden>Projection d'intérêts (30 j)</button></div>
+        <h3>Historique</h3>
+        <table id="history"><thead><tr><th>Date (UTC)</th><th>Type</th><th>Contrepartie / réf.</th><th class="num">Montant</th><th class="num">Solde après</th></tr></thead><tbody></tbody></table>
+      </div>
+    </section>
+  </main>
+  <footer>Projet pédagogique fictif — aucune donnée ni opération réelle. API : <a href="/docs">/docs</a></footer>
+  <script src="/static/app.js"></script>
+</body>
+</html>
